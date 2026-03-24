@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal do Cuscuz com receitas, formulário de contato e conteúdo multimídia.">
+    <title>Portal do Cuscuz - Receitas e Conteúdo Multimídia</title>
+    <style>
+        :root {
+            --cor-fundo: #fff9f0;
+            --cor-texto: #2b2b2b;
+            --cor-primaria: #8a5a00;
+            --cor-secundaria: #d98c1f;
+            --cor-card: #ffffff;
+            --cor-borda: #e6d7c3;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background: var(--cor-fundo);
+            color: var(--cor-texto);
+        }
+
+        header, nav, main, footer {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 2rem 0 1rem;
+        }
+
+        header h1 {
+            margin-bottom: 0.25rem;
+            color: var(--cor-primaria);
+        }
+
+        nav {
+            background: var(--cor-primaria);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:focus,
+        nav a:hover {
+            text-decoration: underline;
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+
+        main {
+            padding-bottom: 2rem;
+        }
+
+        article, section.formulario, section.midia, section.contato {
+            background: var(--cor-card);
+            border: 1px solid var(--cor-borda);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        article h2, section h2, section h3 {
+            color: var(--cor-primaria);
+        }
+
+        aside {
+            background: #fff3df;
+            border-left: 4px solid var(--cor-secundaria);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        fieldset {
+            border: 1px solid var(--cor-borda);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        legend {
+            font-weight: bold;
+            color: var(--cor-primaria);
+            padding: 0 0.5rem;
+        }
+
+        .campo {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        input, select, textarea, button {
+            font: inherit;
+            padding: 0.8rem;
+            border: 1px solid #b9b9b9;
+            border-radius: 8px;
+        }
+
+        input:focus, select:focus, textarea:focus, button:focus {
+            outline: 3px solid #ffbf47;
+            outline-offset: 2px;
+        }
+
+        button {
+            background: var(--cor-secundaria);
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #b66f10;
+        }
+
+        .grid-dois {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        footer {
+            padding: 1rem 0 2rem;
+            text-align: center;
+            color: #5a5a5a;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding-top: 1.25rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portal do Cuscuz</h1>
+        <p>As melhores variações do nosso ouro amarelo.</p>
+    </header>
+
+    <nav aria-label="Navegação principal">
+        <ul>
+            <li><a href="#nordestino">Cuscuz Nordestino</a></li>
+            <li><a href="#paulista">Cuscuz Paulista</a></li>
+            <li><a href="#doce">Cuscuz de Tapioca</a></li>
+            <li><a href="#marroquino">Cuscuz Marroquino</a></li>
+            <li><a href="#midia">Mídia</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article id="nordestino">
+            <h2>1. Cuscuz Nordestino Tradicional</h2>
+            <p>O clássico que não pode faltar no café da manhã, servido quentinho com manteiga ou leite.</p>
+
+            <aside>
+                <h3>Ingredientes:</h3>
+                <ul>
+                    <li>2 xícaras de farinha de milho flocada (flocão)</li>
+                    <li>1 xícara de água</li>
+                    <li>1 pitada de sal</li>
+                </ul>
+            </aside>
+
+            <section>
+                <h3>Modo de Preparo:</h3>
+                <ol>
+                    <li>Em uma tigela, misture o flocão com o sal.</li>
+                    <li>Adicione a água aos poucos para hidratar. Deixe descansar por 10 minutos.</li>
+                    <li>Cozinhe no vapor na cuscuzeira por 15 minutos.</li>
+                </ol>
+            </section>
+        </article>
+
+        <article id="paulista">
+            <h2>2. Cuscuz Paulista de Sardinha</h2>
+            <p>Uma receita completa e colorida, muito comum em festas e almoços de família.</p>
+
+            <aside>
+                <h3>Ingredientes:</h3>
+                <ul>
+                    <li>500g de farinha de milho</li>
+                    <li>2 latas de sardinha e 1 lata de molho de tomate</li>
+                    <li>Milho, ervilha, ovos cozidos e tomates para decorar</li>
+                </ul>
+            </aside>
+
+            <section>
+                <h3>Modo de Preparo:</h3>
+                <p>Refogue os temperos com o molho. Adicione os ingredientes e a farinha, mexendo até ganhar consistência. Modele em uma forma decorada.</p>
+            </section>
+        </article>
+
+        <article id="doce">
+            <h2>3. Cuscuz de Tapioca (Cuscuz Doce)</h2>
+            <p>Uma sobremesa gelada deliciosa feita com tapioca granulada e coco.</p>
+
+            <aside>
+                <h3>Ingredientes:</h3>
+                <ul>
+                    <li>500g de tapioca granulada</li>
+                    <li>1 litro de leite quente</li>
+                    <li>200ml de leite de coco e 1 xícara de açúcar</li>
+                    <li>Coco ralado para polvilhar</li>
+                </ul>
+            </aside>
+
+            <section>
+                <h3>Modo de Preparo:</h3>
+                <ol>
+                    <li>Misture a tapioca e o açúcar em uma travessa.</li>
+                    <li>Despeje o leite quente e o leite de coco, mexendo bem.</li>
+                    <li>Deixe a tapioca hidratar até ficar macia. Cubra com coco ralado e leve à geladeira.</li>
+                </ol>
+            </section>
+        </article>
+
+        <article id="marroquino">
+            <h2>4. Cuscuz Marroquino com Legumes</h2>
+            <p>Uma opção leve e rápida, feita com sêmola de trigo.</p>
+
+            <aside>
+                <h3>Ingredientes:</h3>
+                <ul>
+                    <li>1 xícara de sêmola de trigo (cuscuz marroquino)</li>
+                    <li>1 xícara de caldo de legumes fervente</li>
+                    <li>Azeite, sal, cenoura ralada e passas a gosto</li>
+                </ul>
+            </aside>
+
+            <section>
+                <h3>Modo de Preparo:</h3>
+                <p>Coloque a sêmola em uma tigela e despeje o caldo quente. Tampe e espere 5 minutos. Solte os grãos com um garfo e misture os legumes e o azeite.</p>
+            </section>
+        </article>
+
+        <section id="midia" class="midia" aria-labelledby="titulo-midia">
+            <h2 id="titulo-midia">Conteúdo Multimídia</h2>
+            <div class="grid-dois">
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80" alt="Prato de cuscuz servido em uma mesa de café da manhã">
+                    <figcaption>Imagem ilustrativa de uma porção de cuscuz.</figcaption>
+                </figure>
+
+                <div>
+                    <h3>Vídeo relacionado</h3>
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/1t4qQXl1sX4" 
+                        title="Vídeo sobre preparo de cuscuz" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="formulario" aria-labelledby="titulo-contato">
+            <h2 id="titulo-contato">Formulário de Contato</h2>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Dados do visitante</legend>
+
+                    <div class="campo">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required autocomplete="name">
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required autocomplete="email">
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" autocomplete="tel">
+                    </div>
+
+                    <div class="campo">
+                        <label for="preferencia">Receita preferida</label>
+                        <select id="preferencia" name="preferencia" required>
+                            <option value="">Selecione uma opção</option>
+                            <option value="nordestino">Cuscuz Nordestino</option>
+                            <option value="paulista">Cuscuz Paulista</option>
+                            <option value="doce">Cuscuz de Tapioca</option>
+                            <option value="marroquino">Cuscuz Marroquino</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui" required></textarea>
+                    </div>
+
+                    <div class="campo">
+                        <label>
+                            <input type="checkbox" name="novidades" value="sim">
+                            Desejo receber novidades sobre receitas
+                        </label>
+                    </div>
+
+                    <button type="submit">Enviar formulário</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Portal do Cuscuz © 2026 - Conteúdo acadêmico da disciplina de HTML5.</p>
+    </footer>
+
+</body>
+</html>
