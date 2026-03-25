@@ -164,14 +164,58 @@
             color: #5a5a5a;
         }
 
+        .erro {
+            color: #d32f2f;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        input:invalid:not(:placeholder-shown) ~ .erro,
+        textarea:invalid:not(:placeholder-shown) ~ .erro {
+            display: block;
+        }
+
+        input.campo-erro,
+        textarea.campo-erro {
+            border-color: #d32f2f;
+            background-color: #ffebee;
+        }
+
+        .campo {
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .grid-dois {
+                grid-template-columns: 1fr;
+            }
+
+            input, select, textarea, button {
+                font-size: 16px;
+            }
+        }
+
         @media (max-width: 600px) {
             header {
                 padding-top: 1.25rem;
             }
 
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            article, section.formulario, section.midia, section.contato {
+                padding: 1rem;
+            }
+
+            input, select, textarea, button {
+                padding: 0.6rem;
             }
         }
     </style>
@@ -305,46 +349,52 @@
 
         <section id="contato" class="formulario" aria-labelledby="titulo-contato">
             <h2 id="titulo-contato">Formulário de Contato</h2>
-            <form action="#" method="post">
+            <form id="formulario-contato" action="#" method="post" novalidate>
                 <fieldset>
                     <legend>Dados do visitante</legend>
 
                     <div class="campo">
-                        <label for="nome">Nome completo</label>
-                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required autocomplete="name">
+                        <label for="nome">Nome completo <span aria-label="obrigatório">*</span></label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required autocomplete="name" aria-describedby="erro-nome">
+                        <span id="erro-nome" class="erro" role="alert">Por favor, digite seu nome completo</span>
                     </div>
 
                     <div class="campo">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required autocomplete="email">
+                        <label for="email">E-mail <span aria-label="obrigatório">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required autocomplete="email" aria-describedby="erro-email">
+                        <span id="erro-email" class="erro" role="alert">Por favor, digite um e-mail válido</span>
                     </div>
 
                     <div class="campo">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" autocomplete="tel">
+                        <label for="telefone">Telefone (formato: (00) 00000-0000)</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" autocomplete="tel" aria-describedby="erro-telefone">
+                        <span id="erro-telefone" class="erro" role="alert">Formato inválido. Use: (00) 00000-0000</span>
                     </div>
 
                     <div class="campo">
-                        <label for="preferencia">Receita preferida</label>
-                        <select id="preferencia" name="preferencia" required>
+                        <label for="preferencia">Receita preferida <span aria-label="obrigatório">*</span></label>
+                        <select id="preferencia" name="preferencia" required aria-describedby="erro-preferencia">
                             <option value="">Selecione uma opção</option>
                             <option value="nordestino">Cuscuz Nordestino</option>
                             <option value="paulista">Cuscuz Paulista</option>
                             <option value="doce">Cuscuz de Tapioca</option>
                             <option value="marroquino">Cuscuz Marroquino</option>
                         </select>
+                        <span id="erro-preferencia" class="erro" role="alert">Por favor, selecione uma receita</span>
                     </div>
 
                     <div class="campo">
-                        <label for="mensagem">Mensagem</label>
-                        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui" required></textarea>
+                        <label for="mensagem">Mensagem <span aria-label="obrigatório">*</span></label>
+                        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui" required aria-describedby="erro-mensagem"></textarea>
+                        <span id="erro-mensagem" class="erro" role="alert">Por favor, escreva uma mensagem</span>
                     </div>
 
                     <div class="campo">
                         <label>
-                            <input type="checkbox" name="novidades" value="sim">
+                            <input type="checkbox" name="novidades" value="sim" aria-describedby="info-novidades">
                             Desejo receber novidades sobre receitas
                         </label>
+                        <span id="info-novidades" style="font-size: 0.875rem; color: #666; display: block; margin-top: 0.25rem;">Você pode gerenciar suas preferências a qualquer momento</span>
                     </div>
 
                     <button type="submit">Enviar formulário</button>
@@ -356,6 +406,70 @@
     <footer>
         <p>Portal do Cuscuz © 2026 - Conteúdo acadêmico da disciplina de HTML5.</p>
     </footer>
+
+    <script>
+        const formulario = document.getElementById('formulario-contato');
+
+        // Validação em tempo real
+        const campos = formulario.querySelectorAll('input[required], select[required], textarea[required]');
+
+        campos.forEach(campo => {
+            campo.addEventListener('blur', validarCampo);
+            campo.addEventListener('change', validarCampo);
+        });
+
+        function validarCampo(e) {
+            const campo = e.target;
+            const idErro = 'erro-' + campo.name;
+            const msgErro = document.getElementById(idErro);
+
+            if (!msgErro) return;
+
+            if (!campo.validity.valid && campo.value.trim() !== '') {
+                campo.classList.add('campo-erro');
+                if (campo.type === 'email' || campo.type === 'tel') {
+                    msgErro.style.display = 'block';
+                }
+            } else {
+                campo.classList.remove('campo-erro');
+                msgErro.style.display = 'none';
+            }
+        }
+
+        // Validação ao enviar
+        formulario.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let formularioValido = true;
+            const erros = [];
+
+            campos.forEach(campo => {
+                if (!campo.validity.valid) {
+                    formularioValido = false;
+                    campo.classList.add('campo-erro');
+                    const idErro = 'erro-' + campo.name;
+                    const msgErro = document.getElementById(idErro);
+                    if (msgErro) {
+                        msgErro.style.display = 'block';
+                        erros.push(msgErro.textContent);
+                    }
+                } else {
+                    campo.classList.remove('campo-erro');
+                    const idErro = 'erro-' + campo.name;
+                    const msgErro = document.getElementById(idErro);
+                    if (msgErro) msgErro.style.display = 'none';
+                }
+            });
+
+            if (formularioValido) {
+                alert('Formulário enviado com sucesso! Obrigado por entrar em contato.');
+                formulario.reset();
+                document.querySelectorAll('.campo-erro').forEach(el => el.classList.remove('campo-erro'));
+            } else {
+                alert('Por favor, corrija os erros no formulário antes de enviar.');
+            }
+        });
+    </script>
 
 </body>
 </html>
